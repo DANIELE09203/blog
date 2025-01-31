@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Sportivo</title>
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+      
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #333;
+            background-image: url("sport1.JPG");
+        }
+
+    
+        header {
+            color: white;
+            background-color: #1b1b1b;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo h1 {
+            font-size: 2rem;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #f39c12;
+        }
+
+   
+        .hero {
+            background: url('https://via.placeholder.com/1600x400') no-repeat center center;
+            background-size: cover;
+            padding: 100px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .articles {
+            display: flex;
+            gap: 20px;
+            padding: 40px 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        article {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 30%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        article:hover {
+            transform: scale(1.05);
+        }
+
+        article img {
+            width: 100%;
+            height: auto;
+        }
+
+        article h3 {
+            font-size: 1.5rem;
+            margin: 15px;
+        }
+
+        article p {
+            font-size: 1rem;
+            padding: 0 15px;
+        }
+
+        article button {
+            background-color: #f39c12;
+            border: none;
+            padding: 10px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px 15px;
+            transition: background-color 0.3s;
+        }
+
+        article button:hover {
+            background-color: #e67e22;
+        }
+
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>SportBlog</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Calcio</a></li>
+                <li><a href="#">Basket</a></li>
+                <li><a href="#">Tennis</a></li>
+                <li><a href="#">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Le ultime notizie sportive</h2>
+            <p>Scopri tutte le novità dal mondo dello sport!</p>
+        </section>
+
+        <section class="articles">
+            <article>
+                <img src="campocalcio.jpg" alt="Articolo 1">
+                <h3>Calcio: Le nuove stelle del campionato</h3>
+                <p>Esplora i giovani talenti che stanno facendo impazzire i tifosi...</p>
+                <button onclick="alert('Leggi tutto!')">Leggi</button>
+            </article>
+            <article>
+                <img src="basket.png" alt="Articolo 2">
+                <h3>Basket: Un'altra grande vittoria</h3>
+                <p>Il team ha conquistato un'altra vittoria in casa, guarda gli highlights...</p>
+                <button onclick="alert('Leggi tutto!')">Leggi</button>
+            </article>
+            <article>
+                <img src="https://via.placeholder.com/600x300" alt="Articolo 3">
+                <h3>Tennis: La stagione sta per iniziare</h3>
+                <p>I migliori tennisti si preparano per la nuova stagione. Cosa aspettarsi...</p>
+                <button onclick="alert('Leggi tutto!')">Leggi</button>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 SportBlog. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                alert("Per leggere l'articolo completo, visita il nostro sito!");
+            });
+        });
+    </script>
+</body>
+</html>
