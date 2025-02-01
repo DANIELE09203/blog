@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passione Calcio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a3d62;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1e3799;
+            padding: 20px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        section {
+            padding: 20px;
+        }
+        .images img {
+            width: 150px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        button {
+            background-color: #38ada9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #3c6382;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Passione Calcio</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#gallery">Galleria</a></li>
+                <li><a href="#news">Notizie</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home">
+        <h2>Benvenuti nel mondo del calcio!</h2>
+        <p>Scopri le ultime novità, le partite più emozionanti e molto altro.</p>
+    </section>
+    
+    
+   
+    <script>
+        function aggiungiNotizia() {
+            const newsList = document.getElementById('news-list');
+            const nuovaNotizia = document.createElement('li');
+            nuovaNotizia.textContent = "Nuova notizia sul calcio!";
+            newsList.appendChild(nuovaNotizia);
+        }
+    </script>
+</body>
+</html>
