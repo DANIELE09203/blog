@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Guide - Dark Theme</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #13131f;
+            --bg-tertiary: #1a1a2e;
+            --neon-primary: #00f2fe;
+            --neon-secondary: #4facfe;
+            --neon-accent: #ff2aef;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --neon-shadow: 0 0 10px rgba(0, 242, 254, 0.5), 0 0 20px rgba(79, 172, 254, 0.3);
+            --neon-glow: 0 0 5px rgba(0, 242, 254, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--neon-primary);
+            font-size: 1.5rem;
+            text-decoration: none;
+            text-shadow: var(--neon-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-primary);
+            text-shadow: var(--neon-glow);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+        }
+
+        .html-hero {
+            height: 60vh;
+            background: linear-gradient(135deg, #0a0a1a, #1a1a3c);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 60px;
+            overflow: hidden;
+        }
+
+        .html-hero::before {
+            content: '<HTML>';
+            position: absolute;
+            font-size: 20vw;
+            opacity: 0.05;
+            font-family: 'Courier New', monospace;
+            color: var(--neon-primary);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--neon-shadow);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            color: var(--neon-primary);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: var(--neon-glow);
+        }
+
+        .code-card {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 242, 254, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .code-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--neon-shadow);
+        }
+
+        .code-example {
+            background: var(--bg-tertiary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            position: relative;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        .code-example code {
+            color: var(--text-primary);
+        }
+
+        .tag-highlight { color: var(--neon-primary); }
+        .attribute-highlight { color: var(--neon-secondary); }
+        .value-highlight { color: var(--neon-accent); }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 242, 254, 0.2);
+            border-color: var(--neon-primary);
+            box-shadow: var(--neon-glow);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 242, 254, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--neon-shadow);
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(0, 242, 254, 0.1);
+        }
+
+        .social-icons {
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            color: var(--text-primary);
+            margin: 0 15px;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--neon-primary);
+            text-shadow: var(--neon-glow);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">&lt;/&gt;</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+           
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <section class="html-hero" id="home">
+        <div class="hero-content">
+            <h1>HTML Guide</h1>
+            <p>Scopri il linguaggio che struttura il web</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section id="basics">
+            <h2 class="section-title">HTML Basics</h2>
+            <div class="code-card">
+                <h3>Struttura Base HTML</h3>
+                <div class="code-example">
+                    <button class="copy-btn">Copy</button>
+                    <code>
+<span class="tag-highlight">&lt;!DOCTYPE html&gt;</span>
+<span class="tag-highlight">&lt;html</span> <span class="attribute-highlight">lang</span>=<span class="value-highlight">"it"</span><span class="tag-highlight">&gt;</span>
+    <span class="tag-highlight">&lt;head&gt;</span>
+        <span class="tag-highlight">&lt;meta</span> <span class="attribute-highlight">charset</span>=<span class="value-highlight">"UTF-8"</span><span class="tag-highlight">&gt;</span>
+        <span class="tag-highlight">&lt;title&gt;</span>Il Mio Sito<span class="tag-highlight">&lt;/title&gt;</span>
+    <span class="tag-highlight">&lt;/head&gt;</span>
+    <span class="tag-highlight">&lt;body&gt;</span>
+        <span class="tag-highlight">&lt;h1&gt;</span>Hello World!<span class="tag-highlight">&lt;/h1&gt;</span>
+    <span class="tag-highlight">&lt;/body&gt;</span>
+<span class="tag-highlight">&lt;/html&gt;</span>
+                    </code>
+                </div>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h3>Elementi Base</h3>
+                    <p>Gli elementi HTML sono i blocchi di costruzione di ogni pagina web. Ogni elemento è definito da un tag di apertura e chiusura.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>Attributi</h3>
+                    <p>Gli attributi forniscono informazioni aggiuntive sugli elementi e sono sempre specificati nel tag di apertura.</p>
+                </div>
+                <div class="concept-card">
+                    <h3>Struttura</h3>
+                    <p>Un documento HTML è strutturato in una gerarchia ad albero, con elementi annidati all'interno di altri elementi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples">
+            <h2 class="section-title">Examples</h2>
+            <div class="code-card">
+                <h3>Form HTML</h3>
+                <div class="code-example">
+                    <button class="copy-btn">Copy</button>
+                    <code>
+<span class="tag-highlight">&lt;form</span> <span class="attribute-highlight">action</span>=<span class="value-highlight">"submit.php"</span> <span class="attribute-highlight">method</span>=<span class="value-highlight">"POST"</span><span class="tag-highlight">&gt;</span>
+    <span class="tag-highlight">&lt;label</span> <span class="attribute-highlight">for</span>=<span class="value-highlight">"name"</span><span class="tag-highlight">&gt;</span>Nome:<span class="tag-highlight">&lt;/label&gt;</span>
+    <span class="tag-highlight">&lt;input</span> <span class="attribute-highlight">type</span>=<span class="value-highlight">"text"</span> <span class="attribute-highlight">id</span>=<span class="value-highlight">"name"</span> <span class="attribute-highlight">name</span>=<span class="value-highlight">"name"</span><span class="tag-highlight">&gt;</span>
+    <span class="tag-highlight">&lt;button</span> <span class="attribute-highlight">type</span>=<span class="value-highlight">"submit"</span><span class="tag-highlight">&gt;</span>Invia<span class="tag-highlight">&lt;/button&gt;</span>
+<span class="tag-highlight">&lt;/form&gt;</span>
+                    </code>
+                </div>
+            </div>
+        </section>
+
+        <section id="advanced">
+            <h2 class="section-title">Advanced Topics</h2>
+            <div class="code-card">
+                <h3>HTML5 Semantic Elements</h3>
+                <div class="code-example">
+                    <button class="copy-btn">Copy</button>
+                    <code>
+<span class="tag-highlight">&lt;header&gt;</span>
+    <span class="tag-highlight">&lt;nav&gt;</span>Menu di navigazione<span class="tag-highlight">&lt;/nav&gt;</span>
+<span class="tag-highlight">&lt;/header&gt;</span>
+<span class="tag-highlight">&lt;main&gt;</span>
+    <span class="tag-highlight">&lt;article&gt;</span>
+        <span class="tag-highlight">&lt;section&gt;</span>Sezione dell'articolo<span class="tag-highlight">&lt;/section&gt;</span>
+    <span class="tag-highlight">&lt;/article&gt;</span>
+    <span class="tag-highlight">&lt;aside&gt;</span>Contenuto correlato<span class="tag-highlight">&lt;/aside&gt;</span>
+<span class="tag-highlight">&lt;/main&gt;</span>
+<span class="tag-highlight">&lt;footer&gt;</span>Piè di pagina<span class="tag-highlight">&lt;/footer&gt;</span>
+                    </code>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 HTML Guide. Tutti i diritti riservati.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-codepen"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Menu hamburger
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Funzionalità copia codice
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const codeBlock = button.nextElementSibling;
+                const textArea = document.createElement('textarea');
+                textArea.value = codeBlock.textContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                textArea.remove();
+                
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Chiudi menu mobile quando si clicca un link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
