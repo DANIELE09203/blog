@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Guide - Dark Theme</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #13131f;
+            --bg-tertiary: #1a1a2e;
+            --neon-primary: #00f2fe;
+            --neon-secondary: #4facfe;
+            --neon-accent: #00ff88;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --neon-shadow: 0 0 10px rgba(0, 242, 254, 0.5), 0 0 20px rgba(79, 172, 254, 0.3);
+            --neon-glow: 0 0 5px rgba(0, 242, 254, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--neon-primary);
+            font-size: 1.5rem;
+            text-decoration: none;
+            text-shadow: var(--neon-glow);
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-primary);
+            text-shadow: var(--neon-glow);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .css-hero {
+            height: 60vh;
+            background: linear-gradient(135deg, #0a0a1a, #1a1a3c);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 60px;
+            overflow: hidden;
+        }
+
+        .css-hero::before {
+            content: '{CSS}';
+            position: absolute;
+            font-size: 20vw;
+            opacity: 0.05;
+            font-family: 'Courier New', monospace;
+            color: var(--neon-primary);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--neon-primary), var(--neon-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: var(--neon-shadow);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            color: var(--neon-primary);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: var(--neon-glow);
+        }
+
+        /* Code Cards */
+        .code-card {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 242, 254, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .code-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--neon-shadow);
+        }
+
+        .code-example {
+            background: var(--bg-tertiary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Copy Button Styles */
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            color: #00f2fe;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .copy-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background: rgba(0, 242, 254, 0.2);
+            border-radius: 50%;
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 242, 254, 0.2);
+            border-color: #00f2fe;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+        }
+
+        .copy-btn:hover::before {
+            width: 300px;
+            height: 300px;
+            opacity: 0;
+        }
+
+        .copy-btn.copied {
+            background: rgba(0, 242, 254, 0.3);
+            color: #fff;
+            animation: pulse 0.5s ease;
+        }
+
+        /* Code Highlighting */
+        .selector-highlight { color: var(--neon-primary); }
+        .property-highlight { color: var(--neon-secondary); }
+        .value-highlight { color: var(--neon-accent); }
+
+        /* Properties Grid */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Particles */
+        .copy-particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">{ CSS }</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#selectors">Selettori</a></li>
+            <li><a href="#properties">Proprietà</a></li>
+            <li><a href="#animations">Animazioni</a></li>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <section class="css-hero" id="home">
+        <div class="hero-content">
+            <h1>CSS Guide</h1>
+            <p>Scopri l'arte dello stile web</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section id="selectors">
+            <h2 class="section-title">Selettori CSS</h2>
+            <div class="code-card">
+                <h3>Selettori Base</h3>
+                <div class="code-example">
+                    <button class="copy-btn">
+                        <i class="fas fa-copy"></i>
+                        Copy
+                    </button>
+                    <code>
+<span class="selector-highlight">.classe</span> {
+    <span class="property-highlight">color</span>: <span class="value-highlight">#00f2fe</span>;
+}
+
+<span class="selector-highlight">#id</span> {
+    <span class="property-highlight">background-color</span>: <span class="value-highlight">#1a1a2e</span>;
+}
+
+<span class="selector-highlight">div</span> {
+    <span class="property-highlight">margin</span>: <span class="value-highlight">20px</span>;
+}
+
+<span class="selector-highlight">div > p</span> {
+    <span class="property-highlight">padding</span>: <span class="value-highlight">10px</span>;
+}
+                    </code>
+                </div>
+            </div>
+
+            <div class="code-card">
+                <h3>Selettori Avanzati</h3>
+                <div class="code-example">
+                    <button class="copy-btn">
+                        <i class="fas fa-copy"></i>
+                        Copy
+                    </button>
+                    <code>
+<span class="selector-highlight">button:hover</span> {
+    <span class="property-highlight">transform</span>: <span class="value-highlight">translateY(-2px)</span>;
+    <span class="property-highlight">box-shadow</span>: <span class="value-highlight">0 0 15px rgba(0, 242, 254, 0.5)</span>;
+}
+
+<span class="selector-highlight">input:focus</span> {
+    <span class="property-highlight">border-color</span>: <span class="value-highlight">#00f2fe</span>;
+    <span class="property-highlight">outline</span>: <span class="value-highlight">none</span>;
+}
+
+<span class="selector-highlight">.container *</span> {
+    <span class="property-highlight">transition</span>: <span class="value-highlight">all 0.3s ease</span>;
+}
+                    </code>
+                </div>
+            </div>
+        </section>
+
+        <section id="properties">
+            <h2 class="section-title">Proprietà CSS</h2>
+            <div class="properties-grid">
+                <div class="code-card">
+                    <h3>Flexbox</h3>
+                    <div class="code-example">
+                        <button class="copy-btn">
+                            <i class="fas fa-copy"></i>
+                            Copy
+                        </button>
+                        <code>
+<span class="selector-highlight">.flex-container</span> {
+    <span class="property-highlight">display</span>: <span class="value-highlight">flex</span>;
+    <span class="property-highlight">justify-content</span>: <span class="value-highlight">space-between</span>;
+    <span class="property-highlight">align-items</span>: <span class="value-highlight">center</span>;
+    <span class="property-highlight">flex-wrap</span>: <span class="value-highlight">wrap</span>;
+    <span class="property-highlight">gap</span>: <span class="value-highlight">20px</span>;
+}
+                        </code>
+                    </div>
+                </div>
+
+                <div class="code-card">
+                    <h3>Grid</h3>
+                    <div class="code-example">
+                        <button class="copy-btn">
+                            <i class="fas fa-copy"></i>
+                            Copy
+                        </button>
+                        <code>
+<span class="selector-highlight">.grid-container</span> {
+    <span class="property-highlight">display</span>: <span class="value-highlight">grid</span>;
+    <span class="property-highlight">grid-template-columns</span>: <span class="value-highlight">repeat(auto-fit, minmax(250px, 1fr))</span>;
+    <span class="property-highlight">gap</span>: <span class="value-highlight">2rem</span>;
+}
+                        </code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="animations">
+            <h2 class="section-title">Animazioni CSS</h2>
+            <div class="code-card">
+                <h3>Keyframes e Transizioni</h3>
+                <div class="code-example">
+                    <button class="copy-btn">
+                        <i class="fas fa-copy"></i>
+                        Copy
+                    </button>
+                    <code>
+<span class="selector-highlight">@keyframes neonPulse</span> {
+    <span class="value-highlight">0%</span> { <span class="property-highlight">box-shadow</span>: <span class="value-highlight">0 0 5px #00f2fe</span>; }
+    <span class="value-highlight">50%</span> { <span class="property-highlight">box-shadow</span>: <span class="value-highlight">0 0 20px #00f2fe</span>; }
+    <span class="value-highlight">100%</span> { <span class="property-highlight">box-shadow</span>: <span class="value-highlight">0 0 5px #00f2fe</span>; }
+}
+
+<span class="selector-highlight">.neon-element</span> {
+    <span class="property-highlight">animation</span>: <span class="value-highlight">neonPulse 2s infinite</span>;
+}
+                    </code>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 CSS Guide. Tutti i diritti riservati.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-codepen"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Menu hamburger
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Funzionalità copia codice avanzata
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', async () => {
+                const codeBlock = button.parentElement.querySelector('code');
+                const text = codeBlock.textContent;
+
+                try {
+                    await navigator.clipboard.writeText(text);
+                    button.classList.add('copied');
+                    button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    
+                    // Effetto particelle
+                    createCopyParticles(button);
+
+                    setTimeout(() => {
+                        button.classList.remove('copied');
+                        button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                    button.innerHTML = '<i class="fas fa-times"></i> Error!';
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                    }, 2000);
+                }
+            });
+        });
+
+        // Funzione per creare l'effetto particelle
+        function createCopyParticles(button) {
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'copy-particle';
+                particle.style.cssText = `
+                    position: absolute;
+                    pointer-events: none;
+                    width: 4px;
+                    height: 4px;
+                    background: #00f2fe;
+                    border-radius: 50%;
+                    transition: all 0.6s ease;
+                `;
+
+                const angle = (i / 10) * Math.PI * 2;
+                const velocity = 50 + Math.random() * 30;
+                const x = Math.cos(angle) * velocity;
+                const y = Math.sin(angle) * velocity;
+
+                button.appendChild(particle);
+
+                requestAnimationFrame(() => {
+                    particle.style.transform = `translate(${x}px, ${y}px)`;
+                    particle.style.opacity = '0';
+                });
+
+                setTimeout(() => particle.remove(), 600);
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Chiudi il menu mobile se aperto
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
